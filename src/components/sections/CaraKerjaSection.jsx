@@ -11,25 +11,25 @@ const steps = [
   {
     id: 1,
     title: "Kumpulkan Sampah di Rumah",
-    desc: "Pisahkan sampah plastik, kertas, logam, dan kaca agar tidak tercampur dan mudah ditimbang. Pemilahan awal membantu menjaga kualitas daur ulang.",
+    desc: "Pisahkan plastik, kertas, logam, dan kaca sejak dari rumah. Pemilahan awal membuat sampah lebih mudah ditimbang serta meningkatkan kualitas daur ulang.",
     img: step1Img,
   },
   {
     id: 2,
     title: "Temukan Lokasi Penukaran",
-    desc: "Cari dan Pilih lokasi Bank Sampah terdekat. Perhatikan jam operasionalnya terlebih dahulu sebelum berangkat.",
+    desc: "Cari dan pilih lokasi Bank Sampah terdekat melalui peta. Periksa juga jam operasionalnya agar proses penukaran berjalan lancar saat kamu datang.",
     img: step2Img,
   },
   {
     id: 3,
     title: "Isi Detail Tukar Sampah",
-    desc: "Datangi langsung tempat pengepul pilihanmu. Kamu bebas menentukan waktu pengantaran agar lebih fleksibel dan cepat.",
+    desc: "Tentukan lokasi pengepul yang kamu pilih lalu isi detail penukaran. Atur waktu pengantaran sampah sesuai jadwalmu agar proses lebih fleksibel.",
     img: step3Img,
   },
   {
     id: 4,
     title: "Timbang & Dapatkan Uang",
-    desc: "Serahkan sampah, tunggu ditimbang, lalu tunjukkan bukti penjualan untuk menerima uang. Tanpa akun, cukup isi detail penukaran.",
+    desc: "Serahkan sampahmu kepada petugas untuk ditimbang. Tunjukkan bukti penukaran lalu terima hasilnya secara langsung dengan proses yang cepat.",
     img: step4Img,
   },
 ];

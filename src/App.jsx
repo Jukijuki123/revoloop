@@ -19,13 +19,11 @@ function App() {
         )}
       </AnimatePresence>
 
-      <div className={showSplash ? "pointer-events-none select-none" : ""}>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/trashcash" element={<TrashCashPage />} />
-          <Route path="/komunitas" element={<KomunitasPage />} />
-        </Routes>
-      </div>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/trashcash" element={<TrashCashPage />} />
+        <Route path="/komunitas" element={<KomunitasPage />} />
+      </Routes>
     </>
   );
 }

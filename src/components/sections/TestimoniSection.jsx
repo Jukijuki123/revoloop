@@ -75,7 +75,7 @@ export default function TestimoniSection() {
     <section id='testimoni' className="bg-white py-10 px-4">
 
       <motion.div
-        className="flex flex-col md:flex-row max-w-5xl mb-10 mx-auto pb-3 px-4 justify-between border-b-2 border-primary-dark"
+        className="flex flex-col md:flex-row max-w-6xl mb-10 mx-auto pb-3 px-4 justify-between border-b-2 border-primary-dark"
         initial={{ opacity: 0, y: -50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
@@ -84,16 +84,13 @@ export default function TestimoniSection() {
         <div className="md:w-1/2">
           <h2 className="text-3xl md:text-5xl font-bold text-primary-dark text-center mb-6">
             Apa Kata Mereka{" "}
-            <span className="text-secondary">Tentang RevoLoop?</span>
+            <span className="text-secondary">Tentang REVOLOOP?</span>
           </h2>
         </div>
 
-        <div className="md:w-1/2">
-          <p className="text-primary-dark text-center text-sm md:text-base md:text-start">
-            Kami memahami bahwa setiap orang memiliki cara berbeda dalam
-            mengelola sampah. Melalui pengalaman kami, EarthLine telah membantu
-            banyak masyarakat mengelola sampah dengan lebih mudah, bermanfaat,
-            dan berkelanjutan.
+        <div className="md:w-1/2 ">
+          <p className="text-primary-dark text-sm md:text-base md:text-center">
+            Kami memahami bahwa setiap orang memiliki cara berbeda dalam mengelola sampah. Melalui pengalaman kami, REVOLOOP telah membantu banyak masyarakat mengelola sampah dengan lebih mudah, bermanfaat, dan berkelanjutan.
           </p>
         </div>
       </motion.div>

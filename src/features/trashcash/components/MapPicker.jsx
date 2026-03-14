@@ -100,11 +100,11 @@ function LoadingScreen() {
 function ErrorScreen({ message }) {
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-4 bg-green-50 px-8 text-center">
-      <MapPin className="w-12 h-12 text-red-400" />
-      <p className="text-red-600 font-semibold text-lg">{message}</p>
+      <MapPin className="w-12 h-12 text-red-500" />
+      <p className="text-red-500">{message}</p>
       <button
         onClick={() => window.location.reload()}
-        className="flex items-center gap-2 px-6 py-2 bg-primary-dark text-white rounded-xl font-medium hover:bg-green-900 transition"
+        className="flex gap-2 bg-primary-dark text-center text-white text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"
       >
         <RefreshCw className="w-4 h-4" />
         Coba Lagi
@@ -115,7 +115,7 @@ function ErrorScreen({ message }) {
 
 function ETAItem({ icon: Icon, label, value }) {
   return (
-    <div className="bg-gray-100 rounded-xl py-2 px-1 flex flex-col items-center gap-1">
+    <div className="bg-gray-100 rounded-xl py-2 px-1 flex justify-center items-center gap-2">
       <Icon className="w-4 h-4 text-primary-dark" />
       <span className="text-xs font-medium text-gray-600">{value}</span>
     </div>
@@ -260,7 +260,7 @@ export default function MapPicker({ onSelect }) {
                   </div>
                   <button
                     onClick={() => onSelect(bank)}
-                    className="w-full bg-primary-dark hover:bg-green-700 cursor-pointer text-white text-sm px-3 py-1.5 rounded-md transition"
+                    className="w-full bg-primary-dark  text-center text-white text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"
                   >
                     Pilih Lokasi Ini
                   </button>
@@ -273,7 +273,7 @@ export default function MapPicker({ onSelect }) {
           {routeCoords.length > 0 && (
             <Polyline
               positions={routeCoords}
-              pathOptions={{ color: "#16a34a", weight: 4, dashArray: "8" }}
+              pathOptions={{ color: "#0E5800", weight: 4, dashArray: "1" }}
             />
           )}
         </MapContainer>
@@ -306,21 +306,21 @@ export default function MapPicker({ onSelect }) {
 
             {/* Jarak */}
             <div className="mt-3 flex items-center gap-1.5 text-xs text-gray-600">
-              <Navigation className="w-3.5 h-3.5 text-green-600" />
-              Jarak: <b className="text-green-700 ml-0.5">{distanceKm.toFixed(2)} km</b>
+              <Navigation className="w-3.5 h-3.5 text-primary" />
+              Jarak: <b className="text-primary-dark ml-0.5">{distanceKm.toFixed(2)} km</b>
             </div>
 
             {/* ETA */}
             <div className="mt-2 grid grid-cols-3 gap-2">
               <ETAItem icon={Footprints} label="Jalan" value={etaWalk}  />
-              <ETAItem icon={Bike}       label="Motor" value={etaMotor} />
-              <ETAItem icon={Car}        label="Mobil" value={etaCar}   />
+              <ETAItem icon={Bike} label="Motor" value={etaMotor} />
+              <ETAItem icon={Car} label="Mobil" value={etaCar}   />
             </div>
 
             {/* Tombol pilih */}
             <button
               onClick={() => onSelect(nearestBank)}
-              className="mt-3 w-full bg-primary-dark hover:bg-green-700 cursor-pointer text-white font-semibold py-2 rounded-md transition text-sm"
+              className="mt-3 w-full bg-primary-dark  text-center text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"
             >
               Pilih Lokasi Terdekat
             </button>

@@ -4,8 +4,8 @@ import React, { useEffect, useState, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import logo from "../../assets/img/logoEartLine.svg";
 
-const FINAL_TEXT = "REVOLOOP";
-const TOTAL_DURATION = 4000;
+const FINAL_TEXT = "REVOL OOP";
+const TOTAL_DURATION = 3800;
 
 const SLOT_CHARS = [
   "R","E","C","Y","C","L","E",

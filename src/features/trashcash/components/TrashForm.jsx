@@ -87,7 +87,7 @@ export default function TrashForm({
 
               <button
                 type="button"
-                onClick={() => setJumlah(jumlah > 1 ? jumlah - 1 : 1)}
+                onClick={() => setJumlah((prev) => Math.max(1, prev - 1))}
                 className="px-4 py-2.5 text-green-800 text-lg font-bold hover:bg-gray-100 transition"
               >
                 −
@@ -96,14 +96,32 @@ export default function TrashForm({
               <input
                 type="number"
                 value={jumlah}
-                readOnly
                 min={1}
+                onChange={(e) => {
+                  const value = e.target.value;
+
+                  if (value === "") {
+                    setJumlah("");
+                    return;
+                  }
+
+                  const num = Number(value);
+
+                  if (!Number.isNaN(num) && num >= 1) {
+                    setJumlah(num);
+                  }
+                }}
+                onBlur={() => {
+                  if (!jumlah || jumlah < 1) {
+                    setJumlah(1);
+                  }
+                }}
                 className="flex-1 text-center py-2.5 text-gray-800 font-medium focus:outline-none"
               />
 
               <button
                 type="button"
-                onClick={() => setJumlah(jumlah + 1)}
+                onClick={() => setJumlah((prev) => (prev ? prev + 1 : 1))}
                 className="px-4 py-2.5 text-green-800 text-lg font-bold hover:bg-gray-100 transition"
               >
                 +
@@ -198,12 +216,12 @@ export default function TrashForm({
         </div>
 
         {/* Background Illustration (tablet & desktop only) */}
-        <div className="hidden md:block absolute bottom-0 right-0 pointer-events-none z-0">
+        <div className="absolute bottom-0 right-0 z-0 pointer-events-none">
 
           <img
             src={bgTukarSampah}
             alt="Ilustrasi Tukar Sampah"
-            className="w-[45vw] max-w-[650px] h-auto object-contain"
+            className="w-[500px] md:w-[650px] h-auto object-contain"
           />
 
         </div>

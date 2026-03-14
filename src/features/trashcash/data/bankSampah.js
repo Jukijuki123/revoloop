@@ -1,7 +1,7 @@
 export const bankSampah = [
     {
         id: 1,
-        nama: "Bank Sampah Induk",
+        nama: "Bank Sampah Induk Jakarta",
         kota: "Jakarta Pusat",
         lat: -6.184325906061888, 
         lng: 106.87379631678708,
