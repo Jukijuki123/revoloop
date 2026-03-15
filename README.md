@@ -14,6 +14,7 @@ Website ini mengusung konsep ekonomi sirkular, yaitu mengubah sampah menjadi sum
 - SDG 11 (Kota dan Komunitas Berkelanjutan),
 - SDG 12 (Konsumsi dan Produksi yang Bertanggung Jawab), serta
 - SDG 13 (Penanganan Perubahan Iklim).
+
 Dengan adanya platform ini, diharapkan masyarakat lebih mudah berpartisipasi dalam pengelolaan sampah, meningkatkan kesadaran lingkungan, serta membantu mengurangi dampak pencemaran terhadap lingkungan.
 
 Teknologi yang digunakan: Javascript, ReactJS, TailwindCSS

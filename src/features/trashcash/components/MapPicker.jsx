@@ -22,10 +22,7 @@ import {
 
 import { bankSampah } from "../data/bankSampah";
 
-// ========================================
-// Constants — di luar komponen agar tidak
-// di-recreate setiap render
-// ========================================
+
 
 const DEFAULT_ICON = new L.Icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
@@ -56,9 +53,7 @@ const WALK_SPEED  = 5;
 const MOTOR_SPEED = 40;
 const CAR_SPEED   = 35;
 
-// ========================================
-// Pure helper functions — di luar komponen
-// ========================================
+
 
 function deg2rad(deg) {
   return deg * (Math.PI / 180);
@@ -84,10 +79,7 @@ function formatTime(hours) {
   return `${h}j ${m}m`;
 }
 
-// ========================================
-// Sub-komponen kecil agar MapPicker ringkas
-// ========================================
-
+// Sub-komponen kecil 
 function LoadingScreen() {
   return (
     <div className="h-screen flex flex-col items-center justify-center gap-3 bg-green-50">
@@ -122,10 +114,7 @@ function ETAItem({ icon: Icon, label, value }) {
   );
 }
 
-// ========================================
 // Komponen utama
-// ========================================
-
 export default function MapPicker({ onSelect }) {
 
   const [userLocation, setUserLocation] = useState(null);
@@ -139,7 +128,6 @@ export default function MapPicker({ onSelect }) {
   const [isLoading,    setIsLoading]    = useState(true);
   const [showBadge,    setShowBadge]    = useState(true);
 
-  // ✅ useCallback — fetchRoute tidak di-recreate setiap render
   const fetchRoute = useCallback(async (from, to) => {
     try {
       const url = `https://router.project-osrm.org/route/v1/driving/${from.lng},${from.lat};${to.lng},${to.lat}?overview=full&geometries=geojson`;
@@ -194,7 +182,6 @@ export default function MapPicker({ onSelect }) {
     );
   }, [fetchRoute]);
 
-  // ✅ useMemo — mapCenter tidak berubah referensi tiap render
   const mapCenter = useMemo(() =>
     userLocation ? [userLocation.lat, userLocation.lng] : null,
     [userLocation]
@@ -207,7 +194,7 @@ export default function MapPicker({ onSelect }) {
     <div className="relative h-screen w-full flex flex-col">
 
       {/* Header */}
-      <header className="bg-primary-dark text-white px-5 py-4 flex items-center gap-3 z-50 relative">
+      <header className="bg-primary-dark text-white px-5 py-4 flex items-center gap-3 z-[1000] relative">
         <button
           type="button"
           onClick={() => window.history.back()}
@@ -237,7 +224,7 @@ export default function MapPicker({ onSelect }) {
             </Popup>
           </Marker>
 
-          {/* Marker semua bank sampah */}
+          {/* Marker bank sampah */}
           {bankSampah.map((bank) => (
             <Marker
               key={bank.id}
@@ -269,7 +256,6 @@ export default function MapPicker({ onSelect }) {
             </Marker>
           ))}
 
-          {/* Rute asli dari OSRM */}
           {routeCoords.length > 0 && (
             <Polyline
               positions={routeCoords}
@@ -280,9 +266,8 @@ export default function MapPicker({ onSelect }) {
 
         {/* Floating badge bank terdekat */}
         {nearestBank && showBadge && (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white shadow-xl rounded-2xl px-5 py-4 text-sm z-40 w-[90%] max-w-sm">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white shadow-xl rounded-2xl px-5 py-4 text-sm z-[999] w-[90%] max-w-sm">
 
-            {/* Tombol tutup */}
             <button
               type="button"
               onClick={() => setShowBadge(false)}
@@ -292,7 +277,6 @@ export default function MapPicker({ onSelect }) {
               <X className="w-4 h-4" />
             </button>
 
-            {/* Info bank */}
             <div className="flex items-start gap-2 pr-5">
               <Landmark className="w-5 h-5 text-primary-dark mt-0.5 shrink-0" />
               <div>
@@ -310,14 +294,12 @@ export default function MapPicker({ onSelect }) {
               Jarak: <b className="text-primary-dark ml-0.5">{distanceKm.toFixed(2)} km</b>
             </div>
 
-            {/* ETA */}
             <div className="mt-2 grid grid-cols-3 gap-2">
               <ETAItem icon={Footprints} label="Jalan" value={etaWalk}  />
               <ETAItem icon={Bike} label="Motor" value={etaMotor} />
               <ETAItem icon={Car} label="Mobil" value={etaCar}   />
             </div>
 
-            {/* Tombol pilih */}
             <button
               onClick={() => onSelect(nearestBank)}
               className="mt-3 w-full bg-primary-dark  text-center text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"

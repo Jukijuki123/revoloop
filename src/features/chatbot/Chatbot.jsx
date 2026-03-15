@@ -2,35 +2,31 @@
     import React, { useEffect, useRef, useState } from "react";
     import { MessageCircle, Bot, X, Send } from "lucide-react";
 
-    // ========================================
-    // Data bot — keyword lebih lengkap & variatif
-    // ========================================
-
     const botData = [
     {
         keywords: [
         "halo", "hai", "hello", "hi", "hei", "hey",
         "selamat", "pagi", "siang", "sore", "malam", "permisi", "holla"
         ],
-        answer: "Halo! Selamat datang di EarthLine 🌱\nAda yang bisa saya bantu?",
+        answer: "Halo! Selamat datang di REVOLOOP 🌱\nAda yang bisa saya bantu?",
     },
     {
         keywords: [
-        "apa itu earthline", "earthline itu apa", "earthline",
-        "platform ini", "website ini", "tentang earthline",
-        "ini apa", "apaan ini", "jelasin earthline"
+        "apa itu REVOLOOP", "REVOLOOP itu apa", "REVOLOOP",
+        "platform ini", "website ini", "tentang REVOLOOP",
+        "ini apa", "apaan ini", "jelasin REVOLOOP"
         ],
         answer:
-        "EarthLine adalah platform digital untuk edukasi dan pengelolaan sampah secara modern. Kamu bisa belajar memilah, menukar sampah, dan melihat produk daur ulang — semuanya di satu tempat!",
+        "REVOLOOP adalah platform digital untuk edukasi dan pengelolaan sampah secara modern. Kamu bisa belajar memilah, menukar sampah, dan melihat produk daur ulang — semuanya di satu tempat!",
     },
     {
         keywords: [
         "cara kerja", "gimana sistemnya", "gimana cara kerja",
-        "sistem earthline", "alurnya gimana", "langkah langkah",
+        "sistem REVOLOOP", "alurnya gimana", "langkah langkah",
         "prosesnya", "mekanisme", "cara pakainya", "bagaimana caranya"
         ],
         answer:
-        "Cara kerja EarthLine:\n1️⃣ Kumpulkan sampah di rumah\n2️⃣ Isi detail sampah di fitur Tukar Sampah\n3️⃣ Antar ke bank sampah terdekat\n4️⃣ Dapatkan uang & poin hijau! 💰",
+        "Cara kerja REVOLOOP:\n1️⃣ Kumpulkan sampah di rumah\n2️⃣ Isi detail sampah di fitur Tukar Sampah\n3️⃣ Antar ke bank sampah terdekat\n4️⃣ Dapatkan uang & poin hijau! 💰",
     },
     {
         keywords: [
@@ -76,7 +72,7 @@
         "koin", "point", "penghargaan", "dapat apa", "keuntungan"
         ],
         answer:
-        "Selain uang tunai, kamu juga mendapatkan Poin Hijau setiap kali menukar sampah! 🌿\nPoin Hijau adalah bentuk apresiasi EarthLine atas kontribusimu menjaga lingkungan.",
+        "Selain uang tunai, kamu juga mendapatkan Poin Hijau setiap kali menukar sampah! 🌿\nPoin Hijau adalah bentuk apresiasi REVOLOOP atas kontribusimu menjaga lingkungan.",
     },
     {
         keywords: [
@@ -84,7 +80,7 @@
         "belum punya akun", "cara daftar", "gabung", "join"
         ],
         answer:
-        "Untuk bergabung di EarthLine, kamu bisa klik tombol Daftar di halaman utama dan isi data dirimu. Gratis dan mudah! 🙌",
+        "Untuk bergabung di REVOLOOP, kamu bisa klik tombol Daftar di halaman utama dan isi data dirimu. Gratis dan mudah! 🙌",
     },
     {
         keywords: [
@@ -106,24 +102,20 @@
     "Cara jual sampah",
     "Harga sampah",
     "Lokasi bank sampah",
-    "Apa itu EarthLine?",
+    "Apa itu REVOLOOP?",
     ];
 
-    // ========================================
-    // Matching engine — lebih toleran typo & variasi
-    // ========================================
 
     const getBotResponse = (input) => {
     const clean = input.toLowerCase().trim();
 
-    // 1. Exact / partial keyword match
+
     for (const item of botData) {
         if (item.keywords.some((key) => clean.includes(key))) {
         return item.answer;
         }
     }
 
-    // 2. Fallback — pecah per kata, cari minimal 1 kata yang cocok
     const words = clean.split(/\s+/);
     for (const item of botData) {
         const allKeywordWords = item.keywords.flatMap((k) => k.split(/\s+/));
@@ -135,14 +127,12 @@
     return "Maaf, aku belum punya jawaban untuk itu 😊\nCoba tanyakan seputar cara jual sampah, harga, atau lokasi bank sampah ya!";
     };
 
-    // ========================================
-    // Komponen utama
-    // ========================================
+
 
     const INITIAL_MESSAGE = {
     id: 1,
     sender: "bot",
-    text: "Halo! Saya EarthLineBot 🌱\nAda yang bisa saya bantu?\n\nPilih pertanyaan di bawah atau ketik sendiri ya!",
+    text: "Halo! Saya REVOLOOPBot 🌱\nAda yang bisa saya bantu?\n\nPilih pertanyaan di bawah atau ketik sendiri ya!",
     };
 
     const Chatbot = () => {
@@ -162,7 +152,6 @@
         const trimmed = text.trim();
         if (!trimmed) return;
 
-        // Sembunyikan quick replies setelah user kirim pesan pertama
         setShowQuickReplies(false);
 
         const userMsg = { id: Date.now(), sender: "user", text: trimmed };
@@ -206,13 +195,12 @@
         {isOpen && (
             <div className="fixed bottom-20 right-6 w-80 md:w-96 bg-white shadow-xl rounded-xl flex flex-col border border-primary-dark z-50">
 
-            {/* Header */}
             <div className="bg-primary-dark text-white px-4 py-3 rounded-t-xl flex justify-between items-center">
                 <div className="flex items-center gap-2">
                 <Bot className="w-5 h-5" />
                 <div>
-                    <p className="font-semibold text-sm leading-tight">EarthLine Bot</p>
-                    <p className="text-xs opacity-70 leading-tight">Asisten virtual EarthLine</p>
+                    <p className="font-semibold text-sm leading-tight">REVOLOOP Bot</p>
+                    <p className="text-xs opacity-70 leading-tight">Asisten virtual REVOLOOP</p>
                 </div>
                 </div>
                 <div className="flex items-center gap-2">
@@ -251,7 +239,7 @@
                 </div>
                 ))}
 
-                {/* Typing indicator */}
+
                 {isTyping && (
                 <div className="bg-green-100 text-primary-dark p-2.5 rounded-lg w-fit">
                     <span className="flex gap-1 items-center">
@@ -262,7 +250,7 @@
                 </div>
                 )}
 
-                {/* Quick reply buttons */}
+
                 {showQuickReplies && !isTyping && (
                 <div className="flex flex-wrap gap-1.5 mt-2">
                     {QUICK_REPLIES.map((q) => (
@@ -282,23 +270,26 @@
             </div>
 
             {/* Input area */}
-            <div className="p-3 border-t flex gap-2">
+                <div className="p-3 border-t flex items-center gap-2">
+
                 <input
-                type="text"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                className="flex-1 border border-primary-dark rounded-lg px-3 py-2 text-sm focus:outline-none"
-                placeholder="Tanyakan sesuatu..."
+                    type="text"
+                    value={input}       
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder="Tanyakan sesuatu..."
+                    className="flex-1 min-w-0 border border-primary-dark rounded-lg px-3 py-2 text-sm focus:outline-none"
                 />
+
                 <button
-                type="button"
-                onClick={() => sendMessage(input)}
-                className="bg-primary-dark text-white px-3 py-2 rounded-lg hover:bg-primary flex items-center justify-center cursor-pointer transition"
+                    type="button"
+                    onClick={() => sendMessage(input)}
+                    className="flex-shrink-0 w-10 h-10 bg-primary-dark text-white rounded-lg hover:bg-primary flex items-center justify-center cursor-pointer transition"
                 >
-                <Send className="w-4 h-4" />
+                    <Send className="w-4 h-4" />
                 </button>
-            </div>
+
+                </div>
             </div>
         )}
         </>
