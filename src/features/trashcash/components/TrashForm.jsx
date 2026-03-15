@@ -85,18 +85,21 @@ export default function TrashForm({
 
             <div className="flex items-center border border-green-800 rounded-xl overflow-hidden">
 
+              {/* Tombol Minus */}
               <button
                 type="button"
-                onClick={() => setJumlah((prev) => Math.max(1, prev - 1))}
-                className="px-4 py-2.5 text-green-800 text-lg font-bold hover:bg-gray-100 transition"
+                onClick={() => setJumlah((prev) => Math.max(1, Number(prev) - 1))}
+                className="w-12 h-11 flex items-center justify-center text-green-800 text-xl font-bold hover:bg-gray-100 transition"
               >
                 −
               </button>
 
+              {/* Input */}
               <input
                 type="number"
                 value={jumlah}
                 min={1}
+                inputMode="numeric"
                 onChange={(e) => {
                   const value = e.target.value;
 
@@ -116,13 +119,14 @@ export default function TrashForm({
                     setJumlah(1);
                   }
                 }}
-                className="flex-1 text-center py-2.5 text-gray-800 font-medium focus:outline-none"
+                className="flex-1 text-center h-11 text-gray-800 font-medium focus:outline-none appearance-none"
               />
 
+              {/* Tombol Plus */}
               <button
                 type="button"
-                onClick={() => setJumlah((prev) => (prev ? prev + 1 : 1))}
-                className="px-4 py-2.5 text-green-800 text-lg font-bold hover:bg-gray-100 transition"
+                onClick={() => setJumlah((prev) => (prev ? Number(prev) + 1 : 1))}
+                className="w-12 h-11 flex items-center justify-center text-green-800 text-xl font-bold hover:bg-gray-100 transition"
               >
                 +
               </button>

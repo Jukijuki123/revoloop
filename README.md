@@ -1,28 +1,22 @@
-# Nama Tim: Better or Regal
-# Asal Instansi: SMK Negeri 26 Jakarta
+# Judul Karya: REVOLOOP 
+
+# Institusi: SMK NEGERI 26 JAKARTA
 
 ##  Anggota Tim
-- Juki Sadikin
-- Fahra Dea Najwa
-- Raya Tsania
+- Ketua: Juki Sadikin
+- Anggota 1: Fahra Dea Najwa
+- Anggota 2: Raya Tsania
 
-##  Judul Website
-EARTHLINE
+##  Deskripsi Karya
+REVOLOOP adalah sebuah platform website yang bertujuan mengedukasi dan membantu masyarakat dalam mengelola dan menukarkan sampah menjadi nilai ekonomi. Karya ini dilatarbelakangi oleh tingginya jumlah sampah di Indonesia serta masih rendahnya kesadaran, pemahaman, dan akses masyarakat terhadap pengelolaan sampah yang terorganisir. Melalui REVOLOOP, pengguna dapat menemukan lokasi bank sampah terdekat melalui peta, melakukan penukaran sampah secara lebih praktis, serta mengetahui cara pengelolaan sampah yang baik dan benar.
 
-##  Deskripsi
-Webiste ini (EarthLine) dibuat untuk mempermudah masyarakat dalam mengelola sampah secara efektif dan bertanggung jawab serta mengubah sampah menjadi sumber manfaat melalui pengelolaan yang tepat.
+Website ini mengusung konsep ekonomi sirkular, yaitu mengubah sampah menjadi sumber daya yang memiliki nilai guna dan ekonomi. REVOLOOP juga mendukung beberapa tujuan Sustainable Development Goals (SDGs), khususnya:
+- SDG 11 (Kota dan Komunitas Berkelanjutan),
+- SDG 12 (Konsumsi dan Produksi yang Bertanggung Jawab), serta
+- SDG 13 (Penanganan Perubahan Iklim).
+Dengan adanya platform ini, diharapkan masyarakat lebih mudah berpartisipasi dalam pengelolaan sampah, meningkatkan kesadaran lingkungan, serta membantu mengurangi dampak pencemaran terhadap lingkungan.
 
-Teknologi yang digunakan: ReactJS, TailwindCSS
+Teknologi yang digunakan: Javascript, ReactJS, TailwindCSS
 
-##  Cara Instalasi & Menjalankan
-1. Clone repository:
-   "git clone https://github.com/Jukijuki123/webdesign_Better-or-Regal_technoversary25.git"
-
-2. masuk ke folder project
-    "cd earthline"
-
-3. install despendecies
-    "npm install"
-
-4. jalankan project
-    "npm run dev"
+## Link Website
+https://revoloop.vercel.app/

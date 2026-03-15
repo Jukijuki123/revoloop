@@ -207,7 +207,7 @@ export default function MapPicker({ onSelect }) {
     <div className="relative h-screen w-full flex flex-col">
 
       {/* Header */}
-      <header className="bg-primary-dark text-white px-5 py-4 flex items-center gap-3 z-[1000] relative">
+      <header className="bg-primary-dark text-white px-5 py-4 flex items-center gap-3 z-50 relative">
         <button
           type="button"
           onClick={() => window.history.back()}
@@ -280,7 +280,7 @@ export default function MapPicker({ onSelect }) {
 
         {/* Floating badge bank terdekat */}
         {nearestBank && showBadge && (
-          <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white shadow-xl rounded-2xl px-5 py-4 text-sm z-[999] w-[90%] max-w-sm">
+          <div className="absolute top-4 left-1/2 -translate-x-1/2 bg-white shadow-xl rounded-2xl px-5 py-4 text-sm z-40 w-[90%] max-w-sm">
 
             {/* Tombol tutup */}
             <button
