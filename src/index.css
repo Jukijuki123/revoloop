@@ -90,4 +90,16 @@
   ::-webkit-scrollbar-track {
     background: #e5e7eb;
   }
+
+  /* Hilangkan spinner di Chrome */
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hilangkan spinner di Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }

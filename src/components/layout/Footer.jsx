@@ -7,11 +7,25 @@ import {
   MapPin,
   Facebook,
   Twitter,
-  Github,
   Dribbble,
   Apple,
   Play,
 } from "lucide-react";
+
+const socialLinks = [
+  {
+    icon: Dribbble,
+    url: "https://dribbble.com/",
+  },
+  {
+    icon: Twitter,
+    url: "https://twitter.com/",
+  },
+  {
+    icon: Facebook,
+    url: "https://facebook.com/",
+  },
+];
 
 const Footer = () => {
   return (
@@ -19,7 +33,8 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto space-y-8">
 
         <div className="grid gap-10 md:grid-cols-2">
-          {/* Left */}
+
+          {/* LEFT */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -38,23 +53,28 @@ const Footer = () => {
               sumber manfaat melalui pengelolaan yang tepat.
             </p>
 
-            {/* Social media icons */}
+            {/* SOCIAL ICON */}
             <div className="flex items-center gap-3 pt-2">
-              {[Dribbble, Github, Twitter, Facebook].map((Icon, i) => (
-                <motion.a
-                  key={i}
-                  href="https://github.com/Jukijuki123/webdesign_Better-or-Regal_technoversary25"
-                  whileHover={{ scale: 1.1, y: -2 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="w-9 h-9 rounded-full border border-white/60 flex items-center justify-center text-white"
-                >
-                  <Icon className="w-4 h-4" />
-                </motion.a>
-              ))}
+              {socialLinks.map((item, i) => {
+                const Icon = item.icon;
+                return (
+                  <motion.a
+                    key={i}
+                    href={item.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1, y: -2 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="w-9 h-9 rounded-full border border-white/60 flex items-center justify-center text-white"
+                  >
+                    <Icon className="w-4 h-4" />
+                  </motion.a>
+                );
+              })}
             </div>
           </motion.div>
 
-          {/* Right */}
+          {/* RIGHT */}
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,14 +82,19 @@ const Footer = () => {
             viewport={{ once: true }}
             className="grid gap-6 sm:grid-cols-3 text-sm md:text-base"
           >
+            {/* PHONE */}
             <div>
               <h3 className="font-semibold mb-2">Nomor Telepon</h3>
-              <p className="text-gray-100 flex items-center gap-2">
+              <a
+                href="tel:082399631182"
+                className="text-gray-100 flex items-center gap-2 hover:underline"
+              >
                 <Phone className="w-4 h-4" />
                 <span>0823-9963-1182</span>
-              </p>
+              </a>
             </div>
 
+            {/* NAVIGASI */}
             <div>
               <h3 className="font-semibold mb-2">Navigasi</h3>
               <ul className="space-y-1 text-gray-100">
@@ -96,22 +121,37 @@ const Footer = () => {
               </ul>
             </div>
 
-            {/* Sosial Media */}
+            {/* SOCIAL MEDIA */}
             <div>
               <h3 className="font-semibold mb-2">Sosial Media</h3>
               <ul className="space-y-1 text-gray-100">
                 <li>
-                  <a href="https://www.instagram.com/" className="hover:underline" target="_blank">
+                  <a
+                    href="https://instagram.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
                     Instagram
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.facebook.com/?locale=id_ID" className="hover:underline" target="_blank">
+                  <a
+                    href="https://facebook.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
                     Facebook
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.tiktok.com/id-ID/" className="hover:underline" target="_blank">
+                  <a
+                    href="https://tiktok.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:underline"
+                  >
                     TikTok
                   </a>
                 </li>
@@ -120,18 +160,23 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* Garis pembatas */}
+        {/* DIVIDER */}
         <hr className="border-white/40" />
 
         <div className="grid gap-8 md:grid-cols-3 items-start text-sm md:text-base">
 
+          {/* DOWNLOAD APP */}
           <div className="space-y-3">
             <h3 className="font-semibold">Dapatkan Aplikasi</h3>
+
             <div className="flex flex-wrap gap-3">
+
               <motion.a
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
-                href="#"
+                href="https://www.apple.com/app-store/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-white text-gray-900 rounded-xl px-3 py-2 shadow-sm"
               >
                 <Apple className="w-6 h-6" />
@@ -146,7 +191,9 @@ const Footer = () => {
               <motion.a
                 whileHover={{ scale: 1.03, y: -1 }}
                 whileTap={{ scale: 0.97 }}
-                href="#"
+                href="https://play.google.com/store"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="flex items-center gap-2 bg-white text-gray-900 rounded-xl px-3 py-2 shadow-sm"
               >
                 <Play className="w-6 h-6" />
@@ -157,25 +204,34 @@ const Footer = () => {
                   <p className="text-xs font-semibold">Google Play</p>
                 </div>
               </motion.a>
+
             </div>
           </div>
 
+          {/* JAM */}
           <div>
             <h3 className="font-semibold mb-2">Jam Operasional</h3>
             <p className="text-gray-100 flex items-center gap-2">
               <Clock className="w-4 h-4" />
-              <span>08.00 WIB- 16.00 WIB</span>
+              <span>08.00 WIB - 16.00 WIB</span>
             </p>
           </div>
 
+          {/* LOKASI */}
           <div>
             <h3 className="font-semibold mb-2">Lokasi</h3>
-            <p className="text-gray-100 flex items-start gap-2">
+            <a
+              href="https://maps.app.goo.gl/6ftFYGBV5ijAsXMn6"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-gray-100 flex items-start gap-2 hover:underline"
+            >
               <MapPin className="w-4 h-4 mt-1" />
               <span>Bank Sampah Persatuan Jakarta</span>
-            </p>
+            </a>
           </div>
         </div>
+
       </div>
     </footer>
   );

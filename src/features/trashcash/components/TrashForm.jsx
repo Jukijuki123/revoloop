@@ -1,5 +1,13 @@
 import bgTukarSampah from "@/assets/img/BGTukarSampah.png";
 
+const hargaPerKg = {
+  Plastik: 5000,
+  Kertas: 3000,
+  Logam: 15000,
+  Kaca: 2000,
+  Organik: 1000,
+};
+
 export default function TrashForm({
   jenis,
   setJenis,
@@ -15,6 +23,20 @@ export default function TrashForm({
   onChangeLocation,
 }) {
   const todayStr = new Date().toISOString().split("T")[0];
+
+  const estimasiHarga =
+  jenis && jumlah
+    ? jumlah * (hargaPerKg[jenis] || 0)
+    : 0;
+
+  const formatRupiah = (value) =>
+    new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+      maximumFractionDigits: 0,
+    }).format(value);
+
+
 
   return (
     <div className="bg-green-50 min-h-[100dvh] flex flex-col">
@@ -83,13 +105,13 @@ export default function TrashForm({
               Jumlah Sampah
             </label>
 
-            <div className="flex items-center border border-green-800 rounded-xl overflow-hidden">
+            <div className="flex items-center border border-green-800 rounded-xl overflow-hidden w-full">
 
               {/* Tombol Minus */}
               <button
                 type="button"
                 onClick={() => setJumlah((prev) => Math.max(1, Number(prev) - 1))}
-                className="w-12 h-11 flex items-center justify-center text-green-800 text-xl font-bold hover:bg-gray-100 transition"
+                className="flex-shrink-0 w-11 h-11 flex items-center justify-center text-green-800 text-xl font-bold hover:bg-gray-100 transition"
               >
                 −
               </button>
@@ -119,14 +141,14 @@ export default function TrashForm({
                     setJumlah(1);
                   }
                 }}
-                className="flex-1 text-center h-11 text-gray-800 font-medium focus:outline-none appearance-none"
+                className="flex-1 min-w-0 text-center h-11 text-gray-800 font-medium focus:outline-none appearance-none"
               />
 
               {/* Tombol Plus */}
               <button
                 type="button"
                 onClick={() => setJumlah((prev) => (prev ? Number(prev) + 1 : 1))}
-                className="w-12 h-11 flex items-center justify-center text-green-800 text-xl font-bold hover:bg-gray-100 transition"
+                className="flex-shrink-0 w-11 h-11 flex items-center justify-center text-green-800 text-xl font-bold hover:bg-gray-100 transition"
               >
                 +
               </button>
@@ -136,6 +158,13 @@ export default function TrashForm({
             <p className="text-xs text-gray-400 text-right mt-1">
               kg
             </p>
+
+            {estimasiHarga > 0 && (
+              <div className="mt-2 text-sm text-green-700 font-medium flex justify-between items-center">
+                <span>Estimasi Harga</span>
+                <span>{formatRupiah(estimasiHarga)}</span>
+              </div>
+            )}
 
           </div>
 
