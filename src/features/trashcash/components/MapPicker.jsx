@@ -91,12 +91,12 @@ function LoadingScreen() {
 
 function ErrorScreen({ message }) {
   return (
-    <div className="h-screen flex flex-col items-center justify-center gap-4 bg-green-50 px-8 text-center">
+    <div className="h-screen flex flex-col items-center justify-center gap-6 bg-green-50 px-8 text-center">
       <MapPin className="w-12 h-12 text-red-500" />
       <p className="text-red-500">{message}</p>
       <button
         onClick={() => window.location.reload()}
-        className="flex gap-2 bg-primary-dark text-center text-white text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"
+        className="flex gap-2 bg-primary-dark hover:bg-primary-dark/90 text-center text-white text-sm px-3 py-2 rounded-lg transition"
       >
         <RefreshCw className="w-4 h-4" />
         Coba Lagi
@@ -239,15 +239,14 @@ export default function MapPicker({ onSelect }) {
                       Terdekat
                     </span>
                   )}
-                  <div className="flex items-start">
-                    <div>
-                      <p className="font-semibold text-gray-800 text-sm">{bank.nama}</p>
-                      <p className="text-xs text-gray-500">{bank.kota}</p>
-                    </div>
+                  <div className="flex flex-col gap-1">
+                      <div className="font-semibold text-gray-800 text-sm leading-tight">{bank.nama}</div>
+                      <div className="text-xs text-gray-500 leading-tight">{bank.kota}</div>
+                      <div className="text-xs text-gray-500 leading-tight">Jam Operasional: <span className="text-green-700">08.00 - 16.00</span></div>
                   </div>
                   <button
                     onClick={() => onSelect(bank)}
-                    className="w-full bg-primary-dark  text-center text-white text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"
+                    className="w-full bg-primary-dark text-center text-white text-sm px-3 py-2 rounded-lg hover:bg-primary-dark/90 transition"
                   >
                     Pilih Lokasi Ini
                   </button>
@@ -302,7 +301,7 @@ export default function MapPicker({ onSelect }) {
 
             <button
               onClick={() => onSelect(nearestBank)}
-              className="mt-3 w-full bg-primary-dark  text-center text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-secondary hover:border-secondary transition"
+              className="mt-3 w-full bg-primary-dark  text-center text-white font-semibold text-sm px-3 py-2 rounded-lg hover:bg-primary-dark/90  transition"
             >
               Pilih Lokasi Terdekat
             </button>
