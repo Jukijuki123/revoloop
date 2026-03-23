@@ -76,14 +76,6 @@
     },
     {
         keywords: [
-        "daftar", "registrasi", "buat akun", "sign up", "register",
-        "belum punya akun", "cara daftar", "gabung", "join"
-        ],
-        answer:
-        "Untuk bergabung di REVOLOOP, kamu bisa klik tombol Daftar di halaman utama dan isi data dirimu. Gratis dan mudah! 🙌",
-    },
-    {
-        keywords: [
         "terima kasih", "thanks", "makasih", "thx", "tengkyu",
         "thank you", "tq", "trims", "terimakasih"
         ],

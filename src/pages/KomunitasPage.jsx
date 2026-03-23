@@ -1,12 +1,12 @@
 "use client";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 
-import Footer from "../components/layout/Footer";
 
-import komunitas1Img from "../assets/img/horizontal1.jpg";
-import komunitas2Img from "../assets/img/horizontal2.jpg";
+import komunitas1Img from "../assets/img/komunitas1.png";
+import komunitas2Img from "../assets/img/komunitas2.png";
+import komunitas3Img from "../assets/img/komunitas3.png";
 
 const communities = [
   {
@@ -15,7 +15,7 @@ const communities = [
     description:
       "Komunitas seru tempat kita belajar cara nyulap sampah jadi cuan. Di sini, yang dibuang bukan cuma mantan—tapi juga sampah yang bisa dijual lagi!",
     image: komunitas1Img,
-    link: "https://whatsapp.com/channel/0029Vb7C8jUJZg3xtfMcNB3Q",
+    link: "https://whatsapp.com/channel/0029Vb7Wmq96LwHpUXQcnU0M",
   },
   {
     id: 2,
@@ -23,14 +23,14 @@ const communities = [
     description:
       "Tempat nongkrongnya para pejuang cuan dari sampah. Kita bareng-bareng belajar cara mindahin sampah dari tong ke dompet!",
     image: komunitas2Img,
-    link: "https://whatsapp.com/channel/0029Vb7C8jUJZg3xtfMcNB3Q",
+    link: "https://whatsapp.com/channel/0029Vb7Wmq96LwHpUXQcnU0M",
   },
   {
     id: 3,
     title: "Tunas Hijau",
     description:
       "Komunitas peduli lingkungan yang fokus pada penghijauan dan edukasi daur ulang. Bersama kita jaga bumi tetap hijau!",
-    image: komunitas1Img,
+    image: komunitas3Img,
     link: "https://whatsapp.com/channel/0029VaNguYp545v5B9P5880Y",
   },
   {
@@ -43,9 +43,6 @@ const communities = [
   },
 ];
 
-// ========================================
-// Sub-komponen: Modal konfirmasi gabung
-// ========================================
 
 function ConfirmModal({ community, onConfirm, onCancel }) {
   return (
@@ -96,10 +93,7 @@ function ConfirmModal({ community, onConfirm, onCancel }) {
   );
 }
 
-// ========================================
-// Sub-komponen: Card komunitas
-// ========================================
-
+// Card komunitas
 function CommunityCard({ community, index, onJoin }) {
   return (
     <motion.div
@@ -110,7 +104,6 @@ function CommunityCard({ community, index, onJoin }) {
       viewport={{ once: true }}
       className="bg-white rounded-3xl shadow-lg w-[360px] sm:w-[420px] md:w-[500px] shrink-0 overflow-hidden"
     >
-      {/* ✅ Fix 8: lazy loading pada gambar */}
       <div className="h-52 md:h-64 overflow-hidden">
         <img
           src={community.image}
@@ -144,13 +137,11 @@ function CommunityCard({ community, index, onJoin }) {
   );
 }
 
-// ========================================
-// Komponen utama
-// ========================================
 
+// Komponen utama
 const KomunitasPage = () => {
-  // ✅ Fix 6: State untuk modal konfirmasi
   const [selectedCommunity, setSelectedCommunity] = useState(null);
+  const [activeIndex, setActiveIndex] = useState(0);
 
   const handleBack = () => {
     if (window.history.length > 1) {
@@ -160,31 +151,73 @@ const KomunitasPage = () => {
     }
   };
 
+  const scrollRef = useRef(null);
+
+  const handleScroll = (direction) => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const scrollAmount = 320;
+
+    container.scrollBy({
+      left: direction === "left" ? -scrollAmount : scrollAmount,
+      behavior: "smooth",
+    });
+  };
+
+  const handleScrollIndicator = () => {
+    const container = scrollRef.current;
+    if (!container) return;
+
+    const scrollLeft = container.scrollLeft;
+    const cardWidth = 360 + 24;
+
+    const index = Math.round(scrollLeft / cardWidth);
+    setActiveIndex(index);
+  };
+
   return (
     <div className="min-h-screen flex flex-col bg-primary-dark">
       <main className="flex-1">
         <section className="px-4 sm:px-6 md:px-10 lg:px-16 pt-4 pb-20 text-white">
 
-          {/* Tombol back */}
-          <button
-            onClick={handleBack}
-            className="inline-flex items-center gap-2 text-white hover:text-secondary cursor-pointer mb-6"
-            aria-label="Kembali"
-          >
-            <ArrowLeft className="w-6 h-6" />
-            <span className="text-sm hidden sm:inline">Kembali</span>
-          </button>
+          <header className="bg-primary-dark text-white px-4 md:px-6 py-4 flex items-center gap-3 relative z-20">
+            <button
+              type="button"
+              onClick={handleBack}
+              className="cursor-pointer"
+              aria-label="Kembali"
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2.5"
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
 
-          {/* Header */}
+            <h1 className="text-base md:text-lg font-bold">
+              Komunitas
+            </h1>
+          </header>
+
+          {/* Title */}
           <div className="text-center max-w-3xl mx-auto">
             <motion.h1
               initial={{ opacity: 0, y: -10 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               viewport={{ once: true }}
-              className="text-3xl md:text-4xl lg:text-5xl font-extrabold mt-1"
+              className="text-2xl md:text-3xl lg:text-4xl font-extrabold mt-1"
             >
-              Komunitas <span className="text-lime-300">EARTHLINE</span>
+              Komunitas <span className="text-lime-300">REVOLOOP</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 10 }}
@@ -199,7 +232,6 @@ const KomunitasPage = () => {
             </motion.p>
           </div>
 
-          {/* ✅ Fix 10: Empty state */}
           {communities.length === 0 ? (
             <div className="text-center text-white/60 mt-20">
               <p className="text-lg">Belum ada komunitas tersedia.</p>
@@ -207,34 +239,57 @@ const KomunitasPage = () => {
             </div>
           ) : (
             <div className="mt-10">
-              {/* ✅ Fix 5: Hint scroll */}
               <p className="text-xs text-white/50 text-right mb-2 sm:hidden">
                 Geser untuk lihat lebih banyak →
               </p>
 
               <div className="overflow-x-auto scroll-smooth no-scrollbar pb-4">
-                {/* ✅ Fix 4: Typo justify-betwee → justify-between */}
-                <div className="flex flex-nowrap justify-between gap-6 md:gap-8 min-w-max">
-                  {/* ✅ Fix 1: key prop ditambahkan
-                      ✅ Fix 3: index dipakai untuk animasi delay
-                      ✅ Fix 7: animasi card stagger */}
-                  {communities.map((community, index) => (
-                    <CommunityCard
-                      key={community.id}
-                      community={community}
-                      index={index}
-                      onJoin={setSelectedCommunity}
-                    />
-                  ))}
+                {/* Button kiri */}
+                <button
+                  type="button"
+                  onClick={() => handleScroll("left")}
+                  className="hidden lg:flex items-center justify-center absolute left-8 xl:left-20 top-1/2 -translate-y-1/2 bg-primary hover:bg-secondary text-white w-10 h-10 rounded-full shadow-md z-20 transition"
+                >
+                  &#10094;
+                </button>
+
+                {/* Button kanan */}
+                <button
+                  type="button"
+                  onClick={() => handleScroll("right")}
+                  className="hidden lg:flex items-center justify-center absolute right-8 xl:right-20 top-1/2 -translate-y-1/2 bg-primary hover:bg-secondary text-white w-10 h-10 rounded-full shadow-md z-20 transition"
+                >
+                  &#10095;
+                </button>
+
+                {/* Scroll container */}
+                <div
+                  ref={scrollRef}
+                  onScroll={handleScrollIndicator}
+                  className="max-w-6xl mx-auto overflow-x-auto scroll-smooth no-scrollbar pb-4"
+                >
+                  <div className="flex flex-nowrap justify-between gap-6 md:gap-8 ">
+                    {communities.map((community, index) => (
+                      <CommunityCard
+                        key={community.id}
+                        community={community}
+                        index={index}
+                        onJoin={setSelectedCommunity}
+                      />
+                    ))}
+                  </div>
                 </div>
               </div>
 
-              {/* Scroll dots indicator */}
               <div className="flex items-center justify-center gap-2 mt-4">
-                {communities.map((c) => (
+                {communities.map((c, i) => (
                   <div
                     key={c.id}
-                    className="w-2 h-2 rounded-full bg-white/30"
+                    className={`w-2 h-2 rounded-full transition ${
+                      activeIndex === i
+                        ? "bg-white scale-125"
+                        : "bg-white/30"
+                    }`}
                   />
                 ))}
               </div>
@@ -243,7 +298,6 @@ const KomunitasPage = () => {
         </section>
       </main>
 
-      {/* ✅ Fix 6: Modal konfirmasi gabung */}
       <AnimatePresence>
         {selectedCommunity && (
           <ConfirmModal

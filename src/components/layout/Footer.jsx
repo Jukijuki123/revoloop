@@ -160,7 +160,6 @@ const Footer = () => {
           </motion.div>
         </div>
 
-        {/* DIVIDER */}
         <hr className="border-white/40" />
 
         <div className="grid gap-8 md:grid-cols-3 items-start text-sm md:text-base">

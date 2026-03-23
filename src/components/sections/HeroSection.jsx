@@ -32,7 +32,7 @@ export default function HeroSection() {
         <h1 className="text-4xl md:text-7xl font-bold mb-4 text-lime-600">
           Ubah Sampah Jadi{" "}
           <span className="bg-linear-to-r from-orange-500 to-yellow-400 bg-clip-text text-transparent">
-            Peluang
+            Rupiah
           </span>
         </h1>
 

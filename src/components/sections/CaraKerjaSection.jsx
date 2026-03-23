@@ -2,10 +2,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 
-import step1Img from "../../assets/img/checkBox.png";
-import step2Img from "../../assets/img/mobileBox.png";
-import step3Img from "../../assets/img/truckBox.png";
-import step4Img from "../../assets/img/transaksi.png";
+import step1Img from "@/assets/img/checkBox.png";
+import step2Img from "@/assets/img/mobileBox.png";
+import step3Img from "@/assets/img/truckBox.png";
+import step4Img from "@/assets/img/transaksi.png";
 
 const steps = [
   {
@@ -46,7 +46,7 @@ const CaraKerjaSection = () => {
           viewport={{ once: true }}
           className="text-3xl md:text-4xl font-extrabold text-primary-dark mb-3"
         >
-          Cara <span className="text-primary">Kerja Sistem</span>
+          Cara <span className="text-lime-600">Kerja Sistem</span>
         </motion.h2>
 
         <motion.p

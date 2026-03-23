@@ -15,7 +15,7 @@ const CommunitySection = () => {
     <section id="komunitas" className="bg-primary-light py-10 px-4 md:px-8 lg:px-10 relative">
       <div className="flex flex-col max-w-6xl md:flex-row items-center justify-beetween px-4 mx-auto mt-6">
         <div className="md:w-1/2">
-          <h2 className="text-4xl md:text-6xl text-white font-semibold mb-3 md:mb-6">Komunitas <span className="text-primary-dark ">EARTHLINE</span></h2>
+          <h2 className="text-4xl md:text-6xl text-white font-semibold mb-3 md:mb-6">Komunitas <span className="text-primary-dark ">REVOLOOP</span></h2>
           <p className="text-primary-dark mb-4 text-sm md:text-base">Bergabunglah di ruang aman untuk berbagi dan belajar bersama tentang pengelolaan sampah. Di sini, kita saling mendukung demi lingkungan yang lebih bersih dan berkelanjutan.”</p>
           {/* btn */}
           <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.97 }}>

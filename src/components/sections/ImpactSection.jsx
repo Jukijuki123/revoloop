@@ -3,13 +3,13 @@ import React from "react";
 import { motion } from "framer-motion";
 import { Play } from "lucide-react";
 
-import eduPemilahanThumb from "../../assets/img/eduPemilhanSampah.jpg";
-import eduCuanThumb from "../../assets/img/eduSampahJadiCuan.jpg";
-import eduEksporThumb from "../../assets/img/eduEksporSampah.jpg";
+import eduPemilahanThumb from "@/assets/img/eduPemilhanSampah.jpg";
+import eduCuanThumb from "@/assets/img/eduSampahJadiCuan.jpg";
+import eduEksporThumb from "@/assets/img/eduEksporSampah.jpg";
 
-import ugmLogo from "../../assets/img/ugm.jpeg";
-import dwLogo from "../../assets/img/dw.jpg";
-import bbcLogo from "../../assets/img/bbcNews.png";
+import ugmLogo from "@/assets/img/ugm.jpeg";
+import dwLogo from "@/assets/img/dw.jpg";
+import bbcLogo from "@/assets/img/bbcNews.png";
 
 const videos = [
   {

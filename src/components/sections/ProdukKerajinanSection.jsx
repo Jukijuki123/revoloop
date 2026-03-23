@@ -97,7 +97,7 @@ const ProdukKerajinan = () => {
         nilai jual.
       </motion.p>
 
-    {/*  */}
+    {/* Button Scroll */}
       <button
         type="button"
         onClick={() => handleScroll("left")}

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import logo from "../../assets/img/logoEartLine.svg";
+import logo from "@/assets/img/logoEartLine.svg";
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

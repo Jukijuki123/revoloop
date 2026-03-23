@@ -43,7 +43,6 @@ export default function TrashForm({
 
       {/* Header */}
       <header className="bg-primary-dark text-white px-4 md:px-6 py-4 flex items-center gap-3 relative z-20">
-
         <button
           type="button"
           onClick={onChangeLocation}
@@ -68,15 +67,12 @@ export default function TrashForm({
         <h1 className="text-base md:text-lg font-bold">
           Tukar Sampah
         </h1>
-
       </header>
 
       {/* Main */}
       <main className="flex-1 flex items-center justify-center md:items-start md:justify-start px-4 md:px-10 py-8 md:py-10 relative overflow-hidden">
-
         {/* Form Card */}
         <div className="bg-white rounded-2xl shadow-lg w-full max-w-sm md:max-w-md p-5 md:p-6 space-y-5 relative z-10">
-
           {/* Jenis Sampah */}
           <div>
             <label className="block text-sm font-medium text-gray-800 mb-1">
@@ -104,9 +100,7 @@ export default function TrashForm({
             <label className="block text-sm font-medium text-gray-800 mb-1">
               Jumlah Sampah
             </label>
-
             <div className="flex items-center border border-green-800 rounded-xl overflow-hidden w-full">
-
               {/* Tombol Minus */}
               <button
                 type="button"
@@ -124,14 +118,11 @@ export default function TrashForm({
                 inputMode="numeric"
                 onChange={(e) => {
                   const value = e.target.value;
-
                   if (value === "") {
                     setJumlah("");
                     return;
                   }
-
                   const num = Number(value);
-
                   if (!Number.isNaN(num) && num >= 1) {
                     setJumlah(num);
                   }
@@ -152,7 +143,6 @@ export default function TrashForm({
               >
                 +
               </button>
-
             </div>
 
             <p className="text-xs text-gray-400 text-right mt-1">
@@ -165,12 +155,10 @@ export default function TrashForm({
                 <span>{formatRupiah(estimasiHarga)}</span>
               </div>
             )}
-
           </div>
 
           {/* Lokasi */}
           <div>
-
             <label className="block text-sm font-medium text-gray-800 mb-1">
               Lokasi
             </label>
@@ -181,20 +169,16 @@ export default function TrashForm({
               readOnly
               className="w-full px-4 py-2.5 bg-gray-100 rounded-xl text-gray-700 focus:outline-none"
             />
-
           </div>
 
           {/* Jadwal */}
           <div>
-
             <label className="block text-sm font-medium text-gray-800 mb-2">
               Jadwal Pengambilan
             </label>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-
               <div>
-
                 <label className="text-xs text-gray-400 mb-1 block">
                   Tanggal
                 </label>
@@ -206,49 +190,40 @@ export default function TrashForm({
                   onChange={(e) => setTanggal(e.target.value)}
                   className="w-full bg-gray-100 px-3 py-2.5 rounded-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-700"
                 />
-
               </div>
 
               <div>
-
                 <label className="text-xs text-gray-400 mb-1 block">
                   Waktu
                 </label>
-
                 <select
                   value={waktu}
                   onChange={(e) => setWaktu(e.target.value)}
                   className="w-full px-3 py-2.5 bg-gray-100 rounded-xl text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-700"
                 >
-
                   <option value="">Pilih jam</option>
-
                   {timeSlots.map((t) => (
                     <option key={t} value={t}>
                       {t}
                     </option>
                   ))}
-
                 </select>
-
               </div>
 
             </div>
-
           </div>
 
           {/* Button */}
           <button
             type="button"
             onClick={handleSubmit}
-            className="w-full px-6 py-3 bg-linear-to-r from-primary-dark to-secondary rounded-xl text-lg md:text-xl font-semibold text-white hover:scale-105 transition duration-300 cursor-pointer"
+            className="w-full px-6 py-3 bg-linear-to-r from-primary-dark to-secondary rounded-xl text-lg md:text-xl font-semibold text-white hover:scale-[102%] transition duration-300 cursor-pointer"
           >
             Jual
           </button>
 
         </div>
 
-        {/* Background Illustration (tablet & desktop only) */}
         <div className="absolute bottom-0 right-0 z-0 pointer-events-none">
 
           <img

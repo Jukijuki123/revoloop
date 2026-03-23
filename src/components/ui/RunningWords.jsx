@@ -3,7 +3,7 @@ import React from "react";
 import { Globe2 } from "lucide-react";
 
 
-const words = ["Reduce", "Reuse", "Recycle", "Sampah Jadi Cuan"];
+const words = ["Reduce", "Reuse", "Recycle", "Sampah Jadi Rupiah", "Bijak Mengelola Sampah"];
 
 const RunningWords = () => {
     return (
