@@ -21,3 +21,14 @@ Teknologi yang digunakan: Javascript, ReactJS, TailwindCSS
 
 ## Link Website
 https://revoloop.vercel.app/
+atau
+https://www.revoloop.web.id/
+
+
+## Cara Instalasi & Menjalankan
+1. Extract folder revoloop-maim.zip
+2. Masuk ke folder project
+3. Buka program terminal atau command prompt
+4. Install despendecies dengan perintah "npm install" (pastikan perangkat sudah menginstal node.js)
+5. Jalankan project dengan perintah "npm run dev"
+6. Buka alamat localhost yang tampil di layar terminal menggunakan browser
