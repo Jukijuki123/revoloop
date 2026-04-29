@@ -1,34 +1,36 @@
-# Judul Karya: REVOLOOP 
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-# Institusi: SMK NEGERI 26 JAKARTA
+## Getting Started
 
-##  Anggota Tim
-- Ketua: Juki Sadikin
-- Anggota 1: Fahra Dea Najwa
-- Anggota 2: Raya Tsania
+First, run the development server:
 
-##  Deskripsi Karya
-REVOLOOP adalah sebuah platform website yang bertujuan mengedukasi dan membantu masyarakat dalam mengelola dan menukarkan sampah menjadi nilai ekonomi. Karya ini dilatarbelakangi oleh tingginya jumlah sampah di Indonesia serta masih rendahnya kesadaran, pemahaman, dan akses masyarakat terhadap pengelolaan sampah yang terorganisir. Melalui REVOLOOP, pengguna dapat menemukan lokasi bank sampah terdekat melalui peta, melakukan penukaran sampah secara lebih praktis, serta mengetahui cara pengelolaan sampah yang baik dan benar.
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
+```
 
-Website ini mengusung konsep ekonomi sirkular, yaitu mengubah sampah menjadi sumber daya yang memiliki nilai guna dan ekonomi. REVOLOOP juga mendukung beberapa tujuan Sustainable Development Goals (SDGs), khususnya:
-- SDG 11 (Kota dan Komunitas Berkelanjutan),
-- SDG 12 (Konsumsi dan Produksi yang Bertanggung Jawab), serta
-- SDG 13 (Penanganan Perubahan Iklim).
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-Dengan adanya platform ini, diharapkan masyarakat lebih mudah berpartisipasi dalam pengelolaan sampah, meningkatkan kesadaran lingkungan, serta membantu mengurangi dampak pencemaran terhadap lingkungan.
+You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
 
-Teknologi yang digunakan: Javascript, ReactJS, TailwindCSS
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Link Website
-https://revoloop.vercel.app/
-atau
-https://www.revoloop.web.id/
+## Learn More
 
+To learn more about Next.js, take a look at the following resources:
 
-## Cara Instalasi & Menjalankan
-1. Extract folder revoloop-maim.zip
-2. Masuk ke folder project
-3. Buka program terminal atau command prompt
-4. Install despendecies dengan perintah "npm install" (pastikan perangkat sudah menginstal node.js)
-5. Jalankan project dengan perintah "npm run dev"
-6. Buka alamat localhost yang tampil di layar terminal menggunakan browser
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

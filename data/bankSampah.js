@@ -1,0 +1,12 @@
+export const bankSampah = [
+  { id: 1, nama: "Bank Sampah Induk Jakarta", kota: "Jakarta Pusat", lat: -6.184325906061888, lng: 106.87379631678708 },
+  { id: 2, nama: "Bank Sampah Persatuan Jakarta", kota: "Jakarta Timur", lat: -6.248382580399305, lng: 106.92358569659484 },
+  { id: 3, nama: "Bank Sampah Gema Lestari", kota: "Indramayu, Jawa Barat", lat: -6.3484561036703715, lng: 108.35060857424287 },
+  { id: 4, nama: "Bank Sampah Wiralodra", kota: "Indramayu, Jawa Barat", lat: -6.357138577576764, lng: 108.38284559285364 },
+  { id: 5, nama: "Bank Sampah Sukabumi", kota: "Sukabumi, Jawa Barat", lat: -6.935975769019499, lng: 106.93474071105825 },
+  { id: 6, nama: "Bank Sampah Kuningan", kota: "Kuningan, Jawa Barat", lat: -6.903611555680593, lng: 108.5024016725051 },
+  { id: 7, nama: "Bank Sampah Surabaya Bersih", kota: "Surabaya", lat: -7.2575, lng: 112.7521 },
+  { id: 8, nama: "Bank Sampah Bandung Lestari", kota: "Bandung", lat: -6.898172302013795, lng: 107.66297710297252 },
+  { id: 9, nama: "Bank Sampah Makassar Hijau", kota: "Makassar", lat: -5.1477, lng: 119.4327 },
+  { id: 10, nama: "Bank Sampah Bali Bersih", kota: "Denapasar, Bali", lat: -8.644195985640087, lng: 115.18550589196803 },
+];
