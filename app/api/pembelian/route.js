@@ -1,15 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
+import { sendTelegramNotification } from "@/lib/telegram";
 
-// itung estimasi barang nyampe (4 hari dari skrg)
+// Menghitung estimasi barang tiba (4 hari dari sekarang)
 function getEstimasiTiba() {
   const d = new Date();
   d.setDate(d.getDate() + 4);
   return d.toLocaleDateString("id-ID", { day: "numeric", month: "long", year: "numeric" });
 }
 
-// generate id unik buat belanjaan (format: BLI-tgl-random)
+// Menghasilkan ID unik untuk pembelian (format: BLI-tgl-random)
 function generateKodePembelian() {
   const now = new Date();
   const tanggal =
@@ -22,41 +23,41 @@ function generateKodePembelian() {
 
 export async function POST(request) {
   try {
-    // cek login dulu
+    // Memeriksa autentikasi pengguna
     const session = await getSession();
     if (!session) {
-      return NextResponse.json({ error: "Login dulu bos" }, { status: 401 });
+      return NextResponse.json({ error: "Sesi tidak valid. Harap masuk (login) terlebih dahulu." }, { status: 401 });
     }
 
     const { productId, productName, coins, price, paymentMethod } = await request.json();
 
-    // pastiin datanya ga kosong
+    // Memastikan kelengkapan data pembelian
     if (!productId || !productName || paymentMethod === undefined) {
-      return NextResponse.json({ error: "Data belanjaan ga lengkap" }, { status: 400 });
+      return NextResponse.json({ error: "Data pembelian tidak lengkap." }, { status: 400 });
     }
 
     const user = await prisma.user.findUnique({
       where: { id: session.userId },
-      select: { poinHijau: true },
+      select: { poinHijau: true, name: true, email: true },
     });
 
     if (!user) {
-      return NextResponse.json({ error: "User ga ketemu" }, { status: 404 });
+      return NextResponse.json({ error: "Pengguna tidak ditemukan." }, { status: 404 });
     }
 
     const kode = generateKodePembelian();
     const estimasiTiba = getEstimasiTiba();
 
-    // Kalo bayar pake koin
+    // Proses pembayaran menggunakan Poin Hijau
     if (paymentMethod === "coins") {
       if (user.poinHijau < coins) {
         return NextResponse.json(
-          { error: `Koin kurang. Punya: ${user.poinHijau}, butuh: ${coins}` },
+          { error: `Poin Hijau tidak mencukupi. Saldo Anda: ${user.poinHijau}, Dibutuhkan: ${coins}` },
           { status: 400 }
         );
       }
 
-      // potong koin dan buat riwayat sekaligus (biar aman ga gantung)
+      // Mengurangi Poin Hijau dan mencatat riwayat transaksi secara atomik
       const [updatedUser] = await prisma.$transaction([
         prisma.user.update({
           where: { id: session.userId },
@@ -77,9 +78,12 @@ export async function POST(request) {
         }),
       ]);
 
+      const tgMessage = `🛒 <b>PEMBELIAN BARU (Koin)</b> 🛒\n\n👤 <b>User:</b> ${user.name} (${user.email})\n📦 <b>Barang:</b> ${productName}\n💳 <b>Harga:</b> ${coins} Koin\n🧾 <b>Kode:</b> ${kode}\n\n✅ <i>Lunas. Segera proses pengiriman!</i>`;
+      sendTelegramNotification(tgMessage);
+
       return NextResponse.json({
         success: true,
-        message: `Hore! Berhasil beli "${productName}"`,
+        message: `Pembelian produk "${productName}" berhasil.`,
         remainingCoins: updatedUser.poinHijau,
         estimasiTiba,
         kode,
@@ -87,7 +91,7 @@ export async function POST(request) {
       });
     }
 
-    // Kalo bayar pake duit (transfer)
+    // Proses pembayaran menggunakan Transfer Bank (Uang Tunai)
     if (paymentMethod === "cash") {
       await prisma.transaksi.create({
         data: {
@@ -102,18 +106,21 @@ export async function POST(request) {
         },
       });
 
+      const tgMessageCash = `🛒 <b>PEMBELIAN BARU (Transfer)</b> 🛒\n\n👤 <b>User:</b> ${user.name} (${user.email})\n📦 <b>Barang:</b> ${productName}\n💵 <b>Harga:</b> Rp ${price.toLocaleString('id-ID')}\n🧾 <b>Kode:</b> ${kode}\n\n⏳ <i>Status: Menunggu Pembayaran dari User.</i>`;
+      sendTelegramNotification(tgMessageCash);
+
       return NextResponse.json({
         success: true,
-        message: `Pesanan "${productName}" kebuat, ditunggu bayarannya ya`,
+        message: `Pesanan "${productName}" berhasil dibuat. Silakan lakukan pembayaran.`,
         estimasiTiba,
         kode,
         paymentMethod: "cash",
       });
     }
 
-    return NextResponse.json({ error: "Metode bayar ga bener" }, { status: 400 });
+    return NextResponse.json({ error: "Metode pembayaran tidak valid." }, { status: 400 });
   } catch (error) {
-    console.error("error pas beli:", error);
-    return NextResponse.json({ error: "Aduh servernya error" }, { status: 500 });
+    console.error("Kesalahan sistem saat memproses pembelian:", error);
+    return NextResponse.json({ error: "Terjadi kesalahan internal pada server." }, { status: 500 });
   }
 }

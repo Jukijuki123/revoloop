@@ -19,7 +19,7 @@ export default function TrashForm({
 
   return (
     <div className="bg-white rounded-3xl shadow-lg border border-gray-100 p-5 md:p-6 space-y-5 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      
+
       {/* Lokasi Drop-off */}
       <div>
         <label className="block text-sm font-bold text-gray-800 mb-1.5 flex justify-between">
@@ -50,20 +50,20 @@ export default function TrashForm({
         <label className="block text-sm font-bold text-gray-800 mb-1.5">Estimasi Berat (kg)</label>
         <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden w-full transition focus-within:border-primary-dark focus-within:ring-1 focus-within:ring-primary-dark">
           <button type="button" onClick={() => setJumlah((prev) => Math.max(1, Number(prev) - 1))} className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-primary-dark text-2xl font-bold hover:bg-green-50 transition">−</button>
-          <input type="number" value={jumlah} min={1} inputMode="numeric" 
-            onChange={(e) => { 
-              const v = e.target.value; 
-              if (v === "") { setJumlah(""); return; } 
-              const num = Number(v); 
-              if (!Number.isNaN(num) && num >= 1) setJumlah(num); 
-            }} 
-            onBlur={() => { if (!jumlah || jumlah < 1) setJumlah(1); }} 
-            className="flex-1 min-w-0 text-center h-12 text-gray-800 font-bold focus:outline-none appearance-none bg-gray-50" 
+          <input type="number" value={jumlah} min={1} inputMode="numeric"
+            onChange={(e) => {
+              const v = e.target.value;
+              if (v === "") { setJumlah(""); return; }
+              const num = Number(v);
+              if (!Number.isNaN(num) && num >= 1) setJumlah(num);
+            }}
+            onBlur={() => { if (!jumlah || jumlah < 1) setJumlah(1); }}
+            className="flex-1 min-w-0 text-center h-12 text-gray-800 font-bold focus:outline-none appearance-none bg-gray-50"
           />
           <div className="bg-gray-50 h-12 flex items-center pr-2 text-gray-400 text-sm">kg</div>
           <button type="button" onClick={() => setJumlah((prev) => (prev ? Number(prev) + 1 : 1))} className="flex-shrink-0 w-12 h-12 flex items-center justify-center text-primary-dark text-2xl font-bold hover:bg-green-50 transition">+</button>
         </div>
-        
+
         {estimasiHarga > 0 && (
           <div className="mt-2 text-sm font-medium flex justify-between items-center bg-green-50 px-3 py-2 rounded-lg border border-green-100">
             <span className="text-green-800">Estimasi Koin Didapat</span>
@@ -84,10 +84,10 @@ export default function TrashForm({
         </div>
       </div>
 
-      <button 
-        type="button" 
-        onClick={handleSubmit} 
-        className="w-full py-3.5 bg-gradient-to-r from-primary-dark to-secondary hover:from-green-800 hover:to-yellow-500 text-white font-bold rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+      <button
+        type="button"
+        onClick={handleSubmit}
+        className="w-full py-3.5 bg-gradient-to-r from-primary-dark to-secondary hover:scale-[102%] text-white font-bold rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
       >
         Konfirmasi Drop-off
       </button>

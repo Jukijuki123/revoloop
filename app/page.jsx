@@ -54,14 +54,25 @@ export default function HomePage() {
             sumber manfaat melalui pengelolaan yang tepat.
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-6">
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="relative inline-block overflow-hidden rounded-3xl transition-all duration-500 group"
+            >
               <Link
                 href="/trashcash"
-                className="inline-flex items-center justify-center bg-primary-dark hover:bg-green-800 px-6 py-2.5 rounded-3xl text-white font-medium transition"
+                className="relative inline-block w-full h-full bg-primary-dark px-6 py-2 rounded-3xl"
               >
-                Tukar Sampah <ArrowRight className="ml-2 w-4 h-4" />
+                <span className="relative z-10 flex items-center justify-center text-white font-medium">
+                  Tukar Sampah
+                  <ArrowRight className="ml-2 w-4 h-4" />
+                </span>
+
+                <span className="absolute left-0.5 top-0 w-1/2 h-full bg-linear-to-r from-primary-dark to-secondary transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
+                <span className="absolute right-0 top-0 w-1/2 h-full bg-linear-to-l from-primary-dark to-secondary transform translate-x-full group-hover:translate-x-0 transition-transform duration-500 ease-out"></span>
               </Link>
             </motion.div>
+
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/tentang"
@@ -70,6 +81,7 @@ export default function HomePage() {
                 Pelajari Lebih Lanjut
               </Link>
             </motion.div>
+
           </div>
         </motion.div>
       </section>

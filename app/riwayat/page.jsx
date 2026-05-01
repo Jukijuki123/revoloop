@@ -63,7 +63,8 @@ export default function RiwayatPage() {
   });
 
   const totalMasuk = transaksi.filter((tx) => !isPembelian(tx)).reduce((acc, tx) => acc + (tx.jumlah || 0) * 10, 0);
-  const totalKeluar = transaksi.filter((tx) => isPembelian(tx)).reduce((acc, tx) => acc + Math.abs(tx.harga), 0);
+  const totalKeluarKoin = transaksi.filter((tx) => tx.jenis === "Pembelian").reduce((acc, tx) => acc + Math.abs(tx.harga), 0);
+  const totalKeluarRupiah = transaksi.filter((tx) => tx.jenis === "Pembelian (Transfer)").reduce((acc, tx) => acc + Math.abs(tx.harga), 0);
 
   if (isLoading) return (
     <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -101,7 +102,7 @@ export default function RiwayatPage() {
         <div className="absolute top-0 right-0 w-48 h-48 opacity-50 pointer-events-none"
           style={{ backgroundImage: "radial-gradient(circle, #16a34a18 1.5px, transparent 1.5px)", backgroundSize: "18px 18px" }} />
 
-        <div className="max-w-2xl mx-auto">
+        <div className="max-w-3xl mx-auto">
           <div className="flex items-center gap-2 mb-2">
             <History className="w-7 h-7 text-primary-dark" />
             <h1 className="text-2xl md:text-3xl font-extrabold text-gray-900">Riwayat Transaksi</h1>
@@ -119,13 +120,13 @@ export default function RiwayatPage() {
             </div>
             <div className="bg-green-50 border border-green-100 rounded-2xl p-3.5 text-center">
               <ArrowUpCircle className="w-4 h-4 text-green-600 mx-auto mb-1" />
-              <p className="text-xl font-extrabold text-green-700">{totalMasuk}</p>
-              <p className="text-[10px] text-gray-400">Total Masuk</p>
+              <p className="text-xl font-extrabold text-green-700">+{totalMasuk}</p>
+              <p className="text-[10px] text-gray-400">Total Masuk (Koin)</p>
             </div>
             <div className="bg-red-50 border border-red-100 rounded-2xl p-3.5 text-center">
               <ArrowDownCircle className="w-4 h-4 text-red-500 mx-auto mb-1" />
-              <p className="text-xl font-extrabold text-red-600">{totalKeluar}</p>
-              <p className="text-[10px] text-gray-400">Total Keluar</p>
+              <p className="text-xl font-extrabold text-red-600">-{totalKeluarKoin}</p>
+              <p className="text-[10px] text-gray-400">Total Keluar (Koin)</p>
             </div>
           </div>
         </div>

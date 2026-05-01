@@ -45,7 +45,9 @@ export default function RegisterPage() {
       }
 
       window.dispatchEvent(new Event("user-updated"));
-      router.push("/");
+      const urlParams = new URLSearchParams(window.location.search);
+      const callbackUrl = urlParams.get('callbackUrl') || '/';
+      router.push(callbackUrl);
     } catch {
       setError("Terjadi kesalahan. Coba lagi.");
       setLoading(false);

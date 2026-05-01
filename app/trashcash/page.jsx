@@ -2,13 +2,33 @@
 
 import { useMemo, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { motion, AnimatePresence } from "framer-motion";
 import TrashForm from "@/components/features/trashcash/TrashForm";
 import PickupForm from "@/components/features/trashcash/PickupForm";
 import TrashPopup from "@/components/features/trashcash/TrashPopup";
 import { hargaPerKg } from "@/data/hargaSampah";
 import { generateKodeTransaksi } from "@/lib/utils/generateKode";
 import { formatTanggal } from "@/lib/utils/formatTanggal";
-import { Building2, Truck } from "lucide-react";
+import { Building2, Truck, CheckCircle, XCircle, AlertCircle, X } from "lucide-react";
+
+// Toast component
+function Toast({ toast, onClose }) {
+  useEffect(() => { const t = setTimeout(onClose, 3000); return () => clearTimeout(t); }, [onClose]);
+  const config = {
+    success: { icon: <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />, cls: "bg-green-50 border-green-200" },
+    error: { icon: <XCircle className="w-5 h-5 text-red-500 flex-shrink-0" />, cls: "bg-red-50 border-red-200" },
+    info: { icon: <AlertCircle className="w-5 h-5 text-blue-500 flex-shrink-0" />, cls: "bg-blue-50 border-blue-200" },
+  };
+  const { icon, cls } = config[toast.type] || config.info;
+  return (
+    <motion.div initial={{ opacity: 0, y: 50, scale: 0.95 }} animate={{ opacity: 1, y: 0, scale: 1 }} exit={{ opacity: 0, y: 20, scale: 0.95 }}
+      className={`flex items-start gap-3 p-4 rounded-2xl border shadow-lg max-w-sm w-full ${cls}`}>
+      {icon}
+      <p className="text-sm text-gray-800 font-medium flex-1">{toast.message}</p>
+      <button onClick={onClose}><X className="w-4 h-4 text-gray-400 hover:text-gray-600" /></button>
+    </motion.div>
+  );
+}
 
 // Leaflet requires `window` — must be loaded only on client
 const MapPicker = dynamic(() => import("@/components/features/trashcash/MapPicker"), { ssr: false });
@@ -22,6 +42,7 @@ export default function TrashCashPage() {
   const [popupOpen, setPopupOpen] = useState(false);
   const [kodeTransaksi, setKodeTransaksi] = useState("");
   const [detail, setDetail] = useState({});
+  const [toast, setToast] = useState(null);
 
   // Form State (Shared)
   const [jenis, setJenis] = useState("");
@@ -39,6 +60,24 @@ export default function TrashCashPage() {
     return slots;
   }, []);
 
+  useEffect(() => {
+    const saved = localStorage.getItem("pendingTrashCash");
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        if (data.mode) setMode(data.mode);
+        if (data.jenis) setJenis(data.jenis);
+        if (data.jumlah) setJumlah(data.jumlah);
+        if (data.tanggal) setTanggal(data.tanggal);
+        if (data.waktu) setWaktu(data.waktu);
+        if (data.selectedBank) setSelectedBank(data.selectedBank);
+        if (data.alamat) setAlamat(data.alamat);
+        if (data.whatsapp) setWhatsapp(data.whatsapp);
+      } catch (e) {}
+      localStorage.removeItem("pendingTrashCash");
+    }
+  }, []);
+
   const handleChangeLocation = () => {
     setSelectedBank(null);
     setJenis("");
@@ -47,7 +86,7 @@ export default function TrashCashPage() {
   };
 
   const handleSubmitDropoff = async () => {
-    if (!jenis || !selectedBank || !tanggal || !waktu) { alert("Lengkapi semua field."); return; }
+    if (!jenis || !selectedBank || !tanggal || !waktu) { setToast({ type: "error", message: "Lengkapi semua field." }); return; }
 
     const harga = jumlah * (hargaPerKg[jenis] || 0);
     const kode = generateKodeTransaksi();
@@ -61,10 +100,11 @@ export default function TrashCashPage() {
 
       if (!res.ok) {
         if (res.status === 401) {
-          alert("Silakan Masuk (Login) terlebih dahulu untuk menukarkan sampah.");
-          window.location.href = "/auth/login";
+          setToast({ type: "info", message: "Silakan Masuk (Login) terlebih dahulu untuk menukarkan sampah." });
+          localStorage.setItem("pendingTrashCash", JSON.stringify({ mode, jenis, jumlah, tanggal, waktu, selectedBank }));
+          setTimeout(() => { window.location.href = "/auth/login?callbackUrl=/trashcash"; }, 2000);
         } else {
-          alert("Gagal memproses transaksi.");
+          setToast({ type: "error", message: "Gagal memproses transaksi." });
         }
         return;
       }
@@ -76,15 +116,15 @@ export default function TrashCashPage() {
       window.dispatchEvent(new Event("user-updated"));
     } catch (err) {
       console.error(err);
-      alert("Terjadi kesalahan sistem.");
+      setToast({ type: "error", message: "Terjadi kesalahan sistem." });
     }
   };
 
   const handleSubmitPickup = async () => {
-    if (!alamat || !jenis || !tanggal || !waktu || !whatsapp) { alert("Lengkapi semua field."); return; }
+    if (!alamat || !jenis || !tanggal || !waktu || !whatsapp) { setToast({ type: "error", message: "Lengkapi semua field." }); return; }
 
     if (jumlah < 3) {
-      alert("Maaf, minimal berat sampah untuk layanan Pickup adalah 3 kg.");
+      setToast({ type: "error", message: "Maaf, minimal berat sampah untuk layanan Pickup adalah 3 kg." });
       return;
     }
 
@@ -101,10 +141,11 @@ export default function TrashCashPage() {
 
       if (!res.ok) {
         if (res.status === 401) {
-          alert("Silakan Masuk (Login) terlebih dahulu untuk menukarkan sampah.");
-          window.location.href = "/auth/login";
+          setToast({ type: "info", message: "Silakan Masuk (Login) terlebih dahulu untuk menukarkan sampah." });
+          localStorage.setItem("pendingTrashCash", JSON.stringify({ mode, jenis, jumlah, tanggal, waktu, alamat, whatsapp }));
+          setTimeout(() => { window.location.href = "/auth/login?callbackUrl=/trashcash"; }, 2000);
         } else {
-          alert("Gagal memproses transaksi.");
+          setToast({ type: "error", message: "Gagal memproses transaksi." });
         }
         return;
       }
@@ -116,7 +157,7 @@ export default function TrashCashPage() {
       window.dispatchEvent(new Event("user-updated"));
     } catch (err) {
       console.error(err);
-      alert("Terjadi kesalahan sistem.");
+      setToast({ type: "error", message: "Terjadi kesalahan sistem." });
     }
   };
 
@@ -196,6 +237,15 @@ export default function TrashCashPage() {
       </div>
 
       <TrashPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} kodeTransaksi={kodeTransaksi} detail={detail} />
+
+      {/* Toast Notification */}
+      <div className="fixed bottom-24 left-1/2 -translate-x-1/2 z-50 px-4 w-full flex justify-center pointer-events-none">
+        <div className="pointer-events-auto">
+          <AnimatePresence>
+            {toast && <Toast toast={toast} onClose={() => setToast(null)} />}
+          </AnimatePresence>
+        </div>
+      </div>
     </div>
   );
 }

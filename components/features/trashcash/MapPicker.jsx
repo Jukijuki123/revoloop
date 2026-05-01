@@ -37,7 +37,7 @@ export default function MapPicker({ onSelect, isEmbedded = false }) {
       const url = `https://router.project-osrm.org/route/v1/driving/${from.lng},${from.lat};${to.lng},${to.lat}?overview=full&geometries=geojson`;
       const res = await fetch(url); const data = await res.json();
       if (data.routes?.length > 0) { const coords = data.routes[0].geometry.coordinates.map(([lng, lat]) => [lat, lng]); setRouteCoords(coords); }
-    } catch (err) { console.error("Gagal mengambil rute:", err); }
+    } catch (err) { console.warn("Gagal mengambil rute (limit OSRM), menggunakan jarak garis lurus."); }
   }, []);
 
   useEffect(() => {

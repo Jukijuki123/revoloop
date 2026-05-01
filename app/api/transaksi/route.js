@@ -6,6 +6,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/auth";
+import { sendTelegramNotification } from "@/lib/telegram";
 
 // ── GET: Riwayat transaksi user ─────────────────────────────────────────────
 export async function GET() {
@@ -49,7 +50,22 @@ export async function POST(request) {
         userId: session.userId,
         // status default: "pending" (menunggu konfirmasi admin)
       },
+      include: { user: { select: { name: true, email: true } } },
     });
+
+    // Kirim notifikasi ke Telegram Admin
+    const tgMessage = `🚨 <b>TRANSAKSI TRASHCASH BARU</b> 🚨
+
+👤 <b>User:</b> ${transaksi.user.name} (${transaksi.user.email})
+♻️ <b>Jenis:</b> ${jenis}
+⚖️ <b>Berat:</b> ${jumlah} Kg
+📍 <b>Lokasi:</b> ${lokasi}
+💰 <b>Nilai Jual:</b> ${harga}
+
+✅ <i>Harap periksa dan konfirmasi di Admin Panel REVOLOOP.</i>`;
+
+    // Kirim secara asynchronous tanpa memblokir response ke frontend
+    sendTelegramNotification(tgMessage);
 
     return NextResponse.json({ transaksi }, { status: 201 });
   } catch (error) {
@@ -57,3 +73,4 @@ export async function POST(request) {
     return NextResponse.json({ error: "Server error" }, { status: 500 });
   }
 }
+

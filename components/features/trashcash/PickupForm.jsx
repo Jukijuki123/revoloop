@@ -136,7 +136,7 @@ export default function PickupForm({
         type="button"
         onClick={handleSubmit}
         disabled={!isJumlahValid}
-        className="w-full py-3.5 bg-primary-dark hover:bg-primary-dark/10  disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
+        className="w-full py-3.5 bg-gradient-to-r from-primary-dark to-secondary hover:scale-[102%] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-bold rounded-xl shadow-md hover:shadow-lg transition flex items-center justify-center gap-2"
       >
         <Truck className="w-5 h-5" />
         Ajukan Pickup

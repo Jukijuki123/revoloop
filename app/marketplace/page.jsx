@@ -277,7 +277,7 @@ export default function MarketplacePage() {
                     </div>
                   </div>
                   <button onClick={() => handleOpenModal(product)}
-                    className="w-full py-2.5 bg-primary-dark text-white font-semibold rounded-xl hover:bg-green-800 transition shadow-sm flex items-center justify-center gap-2">
+                    className="w-full py-2.5 bg-primary-dark text-white font-semibold rounded-xl hover:bg-secondary transition shadow-sm flex items-center justify-center gap-2">
                     <ShoppingBag className="w-4 h-4" /> Beli Sekarang
                   </button>
                 </div>
