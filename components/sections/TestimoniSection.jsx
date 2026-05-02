@@ -77,9 +77,9 @@ export default function TestimoniSection() {
                   key={item.id}
                   initial={{ opacity: 0, x: 50 }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: -50 }}
-                  transition={{ duration: 0.4 }}
-                  className="flex-1 min-w-0 bg-white border border-primary-dark rounded-lg p-6 md:p-8 flex flex-col sm:flex-row gap-6 items-start"
+                  exit={{ x: -50 }}
+                  transition={{ duration: 0.3 }}
+                  className="flex-1 min-w-0 bg-white border border-primary-dark rounded-lg p-6 md:p-8 flex flex-col sm:flex-row gap-6 items-center md:items-start"
                 >
                   <div className="shrink-0">
                     <div className="relative w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden border-4 border-gray-100">
@@ -87,6 +87,7 @@ export default function TestimoniSection() {
                         src={item.img}
                         alt={item.name}
                         fill
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                         className="object-cover"
                       />
                     </div>

@@ -300,7 +300,7 @@ export default function MarketplacePage() {
             {!confirmStep ? (
               // STEP 1: Choose Payment Method
               <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 60 }} transition={{ type: "spring", damping: 25 }}
-                className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-sm">
+                className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-md">
                 <div className="flex gap-4 mb-6 pb-5 border-b border-gray-100">
                   <img src={buyingMode.image} alt={buyingMode.name} className="w-20 h-20 rounded-2xl object-cover flex-shrink-0" />
                   <div>
@@ -340,7 +340,7 @@ export default function MarketplacePage() {
             ) : (
               // STEP 2: Konfirmasi akhir
               <motion.div initial={{ opacity: 0, y: 60 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: 60 }} transition={{ type: "spring", damping: 25 }}
-                className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-sm">
+                className="bg-white rounded-3xl shadow-2xl p-6 md:p-8 w-full max-w-md">
                 <h4 className="text-xl font-bold text-gray-900 mb-1">Cek dulu nih!</h4>
                 <p className="text-sm text-gray-500 mb-5">Pastikan detail belanjaan kamu udah bener ya.</p>
                 <div className="bg-gray-50 rounded-2xl p-4 space-y-3 mb-5">

@@ -107,9 +107,8 @@ export default function TentangPage() {
       <KomunitasSection />
 
       {/* ─── FAQ Section ──────────────────────────────────────────── */}
-      <div className="pt-16 pb-8 bg-gray-50">
-        <FaqSection />
-      </div>
+      <FaqSection />
+
     </>
   );
 }

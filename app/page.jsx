@@ -55,7 +55,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-6">
             <motion.div
-              whileHover={{ scale: 1.05 }}
+              whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.95 }}
               className="relative inline-block overflow-hidden rounded-3xl transition-all duration-500 group"
             >
@@ -73,10 +73,11 @@ export default function HomePage() {
               </Link>
             </motion.div>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+
+            <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.95 }}>
               <Link
                 href="/tentang"
-                className="inline-flex items-center justify-center border-2 border-primary-dark px-6 py-2 rounded-3xl text-primary-dark font-medium hover:bg-primary-dark hover:text-white transition"
+                className="inline-block w-full h-full text-center justify-center border-2 border-primary-dark px-6 py-2 rounded-3xl text-primary-dark font-medium hover:bg-primary-dark hover:text-white transition"
               >
                 Pelajari Lebih Lanjut
               </Link>
@@ -93,18 +94,15 @@ export default function HomePage() {
       <RunningWords />
       <CaraKerjaSection />
 
-      {/* footer cta buat narik user */}
+      {/*  cta buat narik user */}
       <section className="relative bg-primary-light overflow-hidden">
         {/* Subtle top wave divider */}
-        <div className="absolute top-0 left-0 right-0 pointer-events-none">
+        {/* <div className="absolute top-0 left-0 right-0 pointer-events-none">
           <svg viewBox="0 0 1440 40" fill="none" className="w-full">
             <path d="M0 40 Q360 0 720 20 Q1080 40 1440 10 L1440 0 L0 0 Z" fill="#ffffff" />
           </svg>
-        </div>
+        </div> */}
 
-        {/* Decorative blobs */}
-        <div className="absolute top-8 right-12 w-64 h-64 bg-green-300/25 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-8 w-48 h-48 bg-secondary/15 rounded-full blur-2xl pointer-events-none" />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-12">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
@@ -151,7 +149,7 @@ export default function HomePage() {
                 <motion.div whileHover={{ scale: 1.04 }} whileTap={{ scale: 0.97 }}>
                   <Link
                     href="/trashcash"
-                    className="inline-flex items-center justify-center gap-2.5 bg-primary-dark hover:bg-green-800 text-white px-8 py-3.5 rounded-full font-bold text-base transition shadow-lg shadow-primary-dark/30"
+                    className="inline-flex items-center justify-center gap-2.5 bg-linear-to-r from-primary-dark to-secondary hover:scale-[102%] text-white px-8 py-3.5 rounded-full font-bold text-base transition "
                   >
                     <Recycle className="w-5 h-5" /> Ayo Jual Sekarang
                   </Link>

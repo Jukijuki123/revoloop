@@ -55,7 +55,7 @@ export default function FaqSection() {
       <div className="relative z-10 max-w-4xl mx-auto px-4 flex flex-col items-center space-y-4">
         {faqs.map((faq, index) => (
           <motion.div key={index} className={`faq-item w-full ${faq.maxWidth} bg-[#F1FAF3] border border-primary-dark rounded-xl overflow-hidden`} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: index * 0.1 }} viewport={{ once: true }}>
-            <button onClick={() => toggleFAQ(index)} className={`faq-button w-full p-4 text-left flex justify-between items-center transition-colors duration-300 ${openIndex === index ? "text-primary" : "text-primary-dark"}`}>
+            <button onClick={() => toggleFAQ(index)} className={`faq-button w-full p-4 text-left flex justify-between items-center transition-colors duration-300 ${openIndex === index ? "text-gray-900" : "text-primary-dark"}`}>
               <span className="font-semibold">{faq.q}</span>
               <ChevronDown className={`w-5 h-5 text-gray-500 transition-transform duration-300 ${openIndex === index ? "rotate-180" : ""}`} />
             </button>
